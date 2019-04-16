@@ -6,6 +6,11 @@ export default class ShoppingCart extends Component{
         super({ element });
         this._render();
     }
+
+    addToCart(phone) {
+        
+    }
+
     _render() {
         this._element.innerHTML = `
          <p>Shopping Cart</p>

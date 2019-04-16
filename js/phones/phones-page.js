@@ -25,7 +25,13 @@ export default class PhonesPage {
             this._catalog.hide();
             this._viewer.show(phoneDetails);
         })
+
+        // this._catalog.subscribe('addToCart', (phone) => {
+        //     this._cart.addToCart(phone)
+        // })
     }
+
+    
 
     _initViewer() {
         this._viewer = new PhoneViewer({
