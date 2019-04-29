@@ -2,6 +2,7 @@ import PhonesCatalog from './components/phones-catalog.js';
 import PhoneViewer from './components/phone-viewer.js';
 import ShoppingCart from './components/shopping-cart.js';
 import PhonesService from './services/phones-service.js';
+import Filter from './components/filter.js';
 
 
 export default class PhonesPage {
@@ -11,6 +12,7 @@ export default class PhonesPage {
         this._initCatalog();
         this._initViewer();
         this._initCart();
+        this._initFilter();
     }
 
     _initCatalog() {
@@ -31,7 +33,6 @@ export default class PhonesPage {
         })
     }
 
-    
 
     _initViewer() {
         this._viewer = new PhoneViewer({
@@ -52,23 +53,19 @@ export default class PhonesPage {
         })
     }
 
+    _initFilter() {
+        this._filter = new Filter({
+            element: this._element.querySelector('[data-component="filter"]')
+        })
+    }
+
     _render() {
         this._element.innerHTML = `
         <div class="row">
         <!--Sidebar-->
         <div class="col-md-2">
             <section>
-            <p>
-                Search:
-                <input>
-            </p>
-            <p>
-                Sort by:
-                <select>
-                <option value="name">Alphabetical</option>
-                <option value="age">Newest</option>
-                </select>
-            </p>
+                <div data-component="filter"></div>
             </section>
             <section>
                 <div data-component="shopping-cart"></div>
