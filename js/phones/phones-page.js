@@ -31,8 +31,6 @@ export default class PhonesPage {
         })
     }
 
-    
-
     _initViewer() {
         this._viewer = new PhoneViewer({
             element: this._element.querySelector('[data-component="phone-viewer"]')
@@ -58,6 +56,7 @@ export default class PhonesPage {
         <!--Sidebar-->
         <div class="col-md-2">
             <section>
+
             <p>
                 Search:
                 <input>
@@ -69,6 +68,7 @@ export default class PhonesPage {
                 <option value="age">Newest</option>
                 </select>
             </p>
+
             </section>
             <section>
                 <div data-component="shopping-cart"></div>
