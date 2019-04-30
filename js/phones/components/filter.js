@@ -1,21 +1,38 @@
-import Component from "./component";
+import Component from "./component.js";
 
 export default class Filter extends Component {
-    constructor({element}) {
-        super({element});
+    constructor({ element }) {
+        super({ element });
 
         this._render();
+        this._queryField = this._element.querySelector('[data-element="query-field"]');
+        this._orderField = this._element.querySelector('[data-element="order-field"]');
+
+        this.on('change', '[data-element="order-field"]', (event) => {
+            this.emit('order-change');
+        })
+        
+        this.on('input', '[data-element="query-field"]', (event) => {
+            this.emit('query-change');
+        })
+
+    }
+
+    getCurrent() {
+        return {
+            query: this._queryField.value, 
+            order: this._orderField.value
+        }
     }
     _render(){
-        this.element.innerHTML = `
+        this._element.innerHTML = `
         <p>
             Search:
-            <input>
+            <input data-element="query-field">
         </p>
-
         <p>
             Sort by:
-            <select>
+            <select data-element="order-field">
                 <option value="name">Alphabetical<option>
                 <option value="age">Newest<option>
             </select>

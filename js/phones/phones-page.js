@@ -2,22 +2,27 @@ import PhonesCatalog from './components/phones-catalog.js';
 import PhoneViewer from './components/phone-viewer.js';
 import ShoppingCart from './components/shopping-cart.js';
 import PhonesService from './services/phones-service.js';
+import Filter from './components/filter.js';
 
 
 export default class PhonesPage {
     constructor({ element }) {
         this._element = element;
         this._render();
+
+        this._initFilter();
         this._initCatalog();
         this._initViewer();
         this._initCart();
+        
     }
 
     _initCatalog() {
         this._catalog = new PhonesCatalog({
             element: this._element.querySelector('[data-component="phone-catalog"]'),
-            phones: PhonesService.getAll()
         })
+
+        this._showPhones();
 
         this._catalog.subscribe('phone-selected', (id) => {
             console.log('Selected: ', id);
@@ -50,25 +55,36 @@ export default class PhonesPage {
         })
     }
 
+    _initFilter() {
+        this._filter = new Filter({
+            element: this._element.querySelector('[data-component="filter"]')
+        })
+
+        this._filter.subscribe('query-change', (eventData)=>{
+            this._showPhones();
+
+        })
+
+        this._filter.subscribe('order-change', (eventData) => {
+            this._showPhones();
+            
+        })
+    }
+
+    _showPhones() {
+        this._currentFiltering = this._filter.getCurrent();
+        const phones = PhonesService.getAll(this._currentFiltering);
+        console.log('Showing phones by creteria', this._currentFiltering);
+        this._catalog.show(phones);
+    }
+
     _render() {
         this._element.innerHTML = `
         <div class="row">
         <!--Sidebar-->
         <div class="col-md-2">
             <section>
-
-            <p>
-                Search:
-                <input>
-            </p>
-            <p>
-                Sort by:
-                <select>
-                <option value="name">Alphabetical</option>
-                <option value="age">Newest</option>
-                </select>
-            </p>
-
+                <div data-component="filter"></div>
             </section>
             <section>
                 <div data-component="shopping-cart"></div>
