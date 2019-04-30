@@ -19,7 +19,7 @@ export default class PhonesCatalog extends Component{
         })
     }
 
-    _show(phones){
+    show(phones){
         this._phones = phones;
         super.show();
         this._render();

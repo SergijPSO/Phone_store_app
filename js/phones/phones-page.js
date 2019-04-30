@@ -41,7 +41,7 @@ export default class PhonesPage {
             element: this._element.querySelector('[data-component="phone-viewer"]')
         })
         this._viewer.subscribe('back', () => {
-            this._catalog.show();
+            this._showPhones();
             this._viewer.hide();
         })
         this._viewer.subscribe('add-phone', (phoneId) => {
