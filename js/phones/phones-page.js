@@ -26,9 +26,10 @@ export default class PhonesPage {
 
         this._catalog.subscribe('phone-selected', (id) => {
             console.log('Selected: ', id);
-            const phoneDetails = PhonesService.getById(id);
-            this._catalog.hide();
-            this._viewer.show(phoneDetails);
+            PhonesService.getById(id).then((phoneDetails) => {
+                this._catalog.hide();
+                this._viewer.show(phoneDetails);
+            });
         })
 
         this._catalog.subscribe('add-phone', (phoneId) => {
@@ -71,10 +72,12 @@ export default class PhonesPage {
         })
     }
 
-    _showPhones() {
+    async _showPhones() {
         this._currentFiltering = this._filter.getCurrent();
-        const phones = PhonesService.getAll(this._currentFiltering);
-        console.log('Showing phones by creteria', this._currentFiltering);
+        // PhonesService.getAll(this._currentFiltering).then((phones) => {
+        //     this._catalog.show(phones);
+        // })
+        const phones = await PhonesService.getAll(this._currentFiltering);
         this._catalog.show(phones);
     }
 
