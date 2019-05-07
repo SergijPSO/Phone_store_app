@@ -1,6 +1,6 @@
 import Component from './component.js';
 
-export default class PhonesCatalog extends Component{
+export default class PhonesCatalog extends Component {
     constructor({ element }) {
         super({ element });
         this._phones = [];
@@ -12,6 +12,7 @@ export default class PhonesCatalog extends Component{
             const phoneId = phoneEl.dataset.phoneId;
             this.emit('phone-selected', phoneId);
         })
+
         this.on('click', '[data-element="add-to-cart"]', (event) => {
             const phoneEl = event.target.closest('[data-element="phone-element"]');
             const phoneId = phoneEl.dataset.phoneId;
@@ -19,7 +20,7 @@ export default class PhonesCatalog extends Component{
         })
     }
 
-    show(phones){
+    show(phones) {
         this._phones = phones;
         super.show();
         this._render();
@@ -29,7 +30,7 @@ export default class PhonesCatalog extends Component{
         this._element.innerHTML = `
         <ul class="phones">
             ${
-                this._phones.map(phone => `
+            this._phones.map(phone => `
                     <li 
                     class="thumbnail"
                     data-element="phone-element"
@@ -42,14 +43,16 @@ export default class PhonesCatalog extends Component{
                         >
                         <img alt="${phone.name}™ with Wi-Fi" src="${phone.imageUrl}">
                         </a>
+
                         <div class="phones__btn-buy-wrapper">
-                          <a 
+                        <a 
                         class="btn btn-success"
                         data-element="add-to-cart"
                         >
                             Add
                         </a>
                         </div>
+
                         <a 
                         href="#!/phones/motorola-xoom-with-wi-fi"
                         data-element="details-link"

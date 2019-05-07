@@ -1,7 +1,6 @@
-import Component from "./component.js";
+import Component from './component.js'
 
-export default class ShoppingCart extends Component{
-
+export default class ShoppingCart extends Component {
     constructor({ element }) {
         super({ element });
 
@@ -35,18 +34,17 @@ export default class ShoppingCart extends Component{
 
     _render() {
         this._element.innerHTML = `
-         <p>Shopping Cart</p>
+            <p>Shopping Cart</p>
             <ul>
-            ${
+                ${
             Object.entries(this._items)
-            .map(([name, quantity]) => `
-                    <li data-phone-id="${name}">${name} - ${quantity} 
-                        <button data-element="remove">X</button>
-                     </li>
-                `).join('')    
+                .map(([name, quantity]) => `
+                        <li data-phone-id="${name}">${name} - ${quantity} 
+                            <button data-element="remove">X</button>
+                        </li>
+                    `).join('')
             }
             </ul>
         `
     }
-  
 }

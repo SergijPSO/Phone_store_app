@@ -24,11 +24,14 @@ export default class PhoneViewer extends Component {
 
   _render() {
     this._element.innerHTML = `
-        <img data-element="big-preview"
+        <img
+        data-element="big-preview"
         class="phone" 
-        src="${this._phoneDetails.images[0]}">
-         <button data-element="back-button">Back</button>
-          <button data-element="add-to-cart">Add to basket</button>
+        src="${this._phoneDetails.images[0]}"
+        >
+
+        <button data-element="back-button">Back</button>
+        <button data-element="add-to-cart">Add to basket</button>
     
         <h1>${this._phoneDetails.name}</h1>
     

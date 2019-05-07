@@ -1,15 +1,15 @@
 const utils = {
-    debounce: debounce
+    debounce
 }
 
 export default utils;
 
-export function debounce(f, delay) {
+function debounce(f, delay) {
     let timer = null;
-    return function(...args) {
+    return function (...args) {
         clearTimeout(timer);
         timer = setTimeout(() => {
-            f.call(this, ...args); 
-        }, delay);
+            f.call(this, ...args);
+        }, delay)
     }
 }

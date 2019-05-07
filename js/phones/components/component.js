@@ -35,7 +35,7 @@ export default class Component {
         const callbacks = this._callbackMap[eventName];
         if (callbacks) {
             this._callbackMap[eventName] = callbacks
-            .filter((cb) => cb !== callbackToRemove)
+                .filter((cb) => cb !== callbackToRemove)
         }
     }
 
